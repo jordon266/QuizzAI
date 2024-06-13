@@ -34,17 +34,13 @@ const textdata = [
     const text = await getsummary(data);
    
     console.log(text);
-   let resp = await {type: "summary", title: "generictitle", summary:text, date: Date.now};
-
-    
+   let resp = await {type: "summary", title: "generictitle", summary:text, date: Date.now.toString()};
     return new Promise( function(resolve,reject)
     { 
       resolve(resp);
     }
      
     );
-    
-  
   }
  // console.log(textdata[0].reading)
 async function getsummary(data) {
@@ -60,7 +56,7 @@ const prompt = "summarize the content";
   return text
 }
 
-
+// test function just to see if it prints
 async function test ()
 {
   const nsummary= await summaryres(textdata[0].reading);
