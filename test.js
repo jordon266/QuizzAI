@@ -3,12 +3,12 @@ const env = require('dotenv')
 env.config({debug: true });
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI("AIzaSyC85XZ_x97RKpoYrSVPXNqZL6jCbzh3nN8");
-
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
 // Ethans Function
 async function run() {
   // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+  // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
   
 
   // You can simulate a back-and-forth conversation with the AI using the startChat function. Here i'm using the story of the tortoise and the hare
@@ -79,7 +79,7 @@ const textdata = [
 async function getsummary(data) {
 
   // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+  // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
   // const prompt = "Write a story about a magic backpack."
 const prompt = "summarize the content";
   // const result = await model.generateContent(prompt);
