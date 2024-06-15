@@ -1,21 +1,18 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-
-// Access your API key as an environment variable (see "Set up your API key" above)
 apikey = process.env.API_KEY
 const genAI = new GoogleGenerativeAI(apikey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
-// console.log(process.env.API_KEY)
 
-// Ethans Function
+let questionBank = [];
+i = 1;
+
 async function run() {
-  // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
-  // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
   
 
   // You can simulate a back-and-forth conversation with the AI using the startChat function. Here i'm using the story of the tortoise and the hare
 
-  const chat = model.startChat({
+    const chat = model.startChat({
     history: [
       {
         role: "user",
@@ -27,15 +24,35 @@ async function run() {
     },
   });
 
-  for(let i = 0; i<10; i++){
     const msg = "ask a question about the text i provided, and give me 4 multiple choice answers for it, with only 1 correct answer. Please give me the correct answer after the question.";
 
-    const result = await chat.sendMessage(msg);
-    const response = await result.response;
-    const text = response.text();
-    console.log(text);
+    for(let i = 1; i<11; i++){
+        const result = await chat.sendMessage(msg);
+        const response = await result.response;
+        const text = response.text();
+        responseSplit = text.split("\n\n");
+
+        questionAsked = responseSplit[0];
+        answerOptions = responseSplit[1];
+        correctAnswer = responseSplit[2];
+
+        questionBank.push({
+            type: "Question", 
+            number: i.toString(), 
+            question: questionAsked, 
+            options: {
+                a: answerOptions.split("\n")[0], 
+                b: answerOptions.split("\n")[1], 
+                c: answerOptions.split("\n")[2],
+                d: answerOptions.split("\n")[3]},
+            answer: correctAnswer})
     }
 
+    console.log(new Promise( function(resolve,reject)
+    { 
+      resolve(questionBank);
+    }
+    )); // doesn't print properly but works the same as yours
 }
  
 run()
