@@ -64,7 +64,7 @@ const textdata = [
   async function test ()
   {
     const nsummary= await summaryres(textdata[0].reading);
-    console.log(await nsummary)
+    console.log( nsummary)
   }
   
   test()
