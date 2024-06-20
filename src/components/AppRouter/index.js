@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import  HomePage  from '../HomePage';
+import GetSummary from '../GetSummary';
 // import AboutPage from './AboutPage';
 // import ContactPage from './ContactPage';
 
@@ -8,8 +9,8 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/getquestions" component={GetQuestions} />
-        <Route path="/getsummary" component={GetSummary} /> */}
+        {/* <Route path="/getquestions" element={GetQuestions} /> */}
+        <Route path="/getsummary" element={<GetSummary /> }/>
       </Routes>
     </BrowserRouter>
   );
