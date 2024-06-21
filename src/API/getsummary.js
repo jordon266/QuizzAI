@@ -1,8 +1,8 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-
+// const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-apikey = process.env.API_KEY
+const apikey = process.env.API_KEY
 console.log(apikey);
 const genAI = new GoogleGenerativeAI(apikey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
@@ -34,11 +34,10 @@ const textdata = [
     ];
     
   
-    async function summaryres(data){
-      const text = await getsummary(data);
-     
-      console.log(text);
-     let resp = await {type: "summary", title: "generictitle", summary:text, date: Date.now.toString()};
+    export default async function summaryres(data){
+     const createdate = Date.now().toString()
+     const text = await getsummary(data);
+     let resp = await {summary:text, date: createdate};
       return new Promise( function(resolve,reject)
       { 
         resolve(resp);
@@ -53,6 +52,7 @@ const textdata = [
     // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
     // const prompt = "Write a story about a magic backpack."
   const prompt = "summarize the content";
+  
     // const result = await model.generateContent(prompt);
     const result = await model.generateContent([prompt,data]);
     const response = await result.response;
@@ -68,3 +68,4 @@ const textdata = [
   }
   
   test()
+
