@@ -14,13 +14,17 @@ import '@fontsource/roboto/700.css';
 const HomePage = () => {
   const [title, setTitle] = useState(""); // Declare title state variable
   const [reading, setReading] = useState(""); // Declare reading state variable
-  
+  const [currentPage, setCurrentPage] = useState('home');
   const payload = { title, reading };
   const navigate = useNavigate()
 
+  const  handlePageChange = (newPage) =>{
+    setCurrentPage(newPage)
+  }
   const summarize = (event) => {
     event.preventDefault();
-    navigate("/getsummary",  {state: { payload }});
+    handlePageChange('getsummary')
+    navigate("/getsummary",  {state: { payload, currentPage }});
   };
 
   const questionize = (event) => {
