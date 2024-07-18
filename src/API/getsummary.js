@@ -2,39 +2,17 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Access your API key as an environment variable (see "Set up your API key" above)
-const apikey = process.env.API_KEY
-console.log(apikey);
-const genAI = new GoogleGenerativeAI(apikey);
+const apikey = process.env.googleapikey
+console.log(apikey + "this is the apikey");
+const genAI = new GoogleGenerativeAI('AIzaSyCe6nGOcBmyvQdIdZEX9xEu9A1kvtcssus');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 // console.log(process.env.API_KEY)
 // //Jordon's part
-const textdata = [
-    {
-        reading: "Taking advantage of a weekend visit to your family\
-    home, you have washed and dried your clothing and are removing the clothing\
-    from the dryer. You notice that your socks seem to be stuck to your shirts. Even\
-    shaking the shirt will not remove the socks. When you pull the socks off the\
-    shirt, they peel off with a crackling sound. As you carry your dry clothes into your\
-    bedroom, you wonder why those effects occurred. You are still wondering while\
-    you comb your hair in the bathroom. You turn on the faucet and unintentionally\
-    hold the comb you just used next to the stream of water. The stream of water\
-    bends to the side, toward the comb! You move the comb to different positions\
-    and notice that the stream of water deviates to the side by different amounts.\
-    Your father wanders by while you are doing this and says, 'That's exactly the\
-    technique we use in designing our high-speed manufacturing printers. Go look at\
-    the cans of food in the kitchen. How do you think the expiration dates are printed\
-    on the cans? Even more fascinating, how do we print code numbers on eggs?'\
-    You never quite understood what your father does for a living, but are now quite\
-    intrigued. You know that he designs some kind of industrial printers. You ask him\
-    what he means about your bathroom experiment. He tells you to do some online\
-    research on continuous inkjet printing."
-    }
-    
-        
-    ];
-    
+
   
     export default async function summaryres(data){
+    //   console.log(apikey)
+    // return data
      const createdate = Date.now().toString()
      const text = await getsummary(data);
      let resp = await {summary:text, date: createdate};
@@ -47,7 +25,7 @@ const textdata = [
     }
    // console.log(textdata[0].reading)
   async function getsummary(data) {
-  
+  console.log(apikey + "this is the apikey")
     // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
     // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
     // const prompt = "Write a story about a magic backpack."
@@ -61,11 +39,6 @@ const textdata = [
   }
   
   // test function just to see if it prints
-  async function test ()
-  {
-    const nsummary= await summaryres(textdata[0].reading);
-    console.log( nsummary)
-  }
   
-  test()
+  // test()
 
